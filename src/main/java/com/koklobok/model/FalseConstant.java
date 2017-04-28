@@ -6,7 +6,7 @@ package com.koklobok.model;
 public class FalseConstant extends LogicConstant {
 
     public FalseConstant() {
-        super(true);
+        super(false);
     }
 
     @Override
