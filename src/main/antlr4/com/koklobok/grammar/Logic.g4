@@ -1,29 +1,35 @@
 grammar Logic;
 
-stat: expr '=' expr;
+stat: expr '=' expr EOF;
 
-expr: expr AND expr     #and 
-    | expr OR expr      #or
-    | var               #variable_expr
-    | constant          #constant_expr
-    | '(' expr ')'      #paren
-    | NOT '(' expr ')'  #not_expr
+expr: expr AND expr         #expr_AND      
+    | expr OR expr          #expr_OR
+    | negate                #expr_NOT
+    | var                   #expr_VAR
+    | constant              #expr_CONST
+    | group                 #expr_GROUP
 ;
 
-var: VAR        #variable
-    | NOT var   #not_variable
-;    
+group: '(' expr ')' ;
+
+negate: NOT var             #not_var
+    | NOT group             #not_group
+    | NOT constant_expr          #not_constant
+; 
+
+var: VAR ;
+
+constant_expr: constant;
 
 constant: TRUE      #true
     | FALSE         #false
-    | NOT constant  #not_constant
 ;
 
 TRUE: 'true';
 FALSE: 'false';
 AND: 'AND' | '&';
 OR:  'OR' | '|';
-VAR: [A-Z]+;
+VAR: [A-Z];
 NOT: 'NOT' | '!';
 NL:  '\r'? '\n';
 WS:  [ \t] -> skip;
