@@ -1,4 +1,4 @@
-grammar Logic;
+grammar BooleanLogic;
 
 stat: expr '=' expr EOF;
 
@@ -14,7 +14,7 @@ group: '(' expr ')' ;
 
 negate: NOT var             #not_var
     | NOT group             #not_group
-    | NOT constant_expr          #not_constant
+    | NOT constant_expr     #not_constant
 ; 
 
 var: VAR ;
