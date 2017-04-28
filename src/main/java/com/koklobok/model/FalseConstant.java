@@ -8,5 +8,9 @@ public class FalseConstant extends LogicConstant {
     public FalseConstant() {
         super(true);
     }
-    
+
+    @Override
+    public String toString() {
+        return "FALSE";
+    }
 }

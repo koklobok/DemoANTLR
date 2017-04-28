@@ -15,4 +15,9 @@ public class NegateOperation extends UnaryOperation {
     public boolean evaluate(Map<Variable, Boolean> parameters) throws VariableValueNotDefined {
         return !getSubExpression().evaluate(parameters);
     }
+
+    @Override
+    public String toString() {
+        return "!" + getSubExpression().toString();
+    }
 }

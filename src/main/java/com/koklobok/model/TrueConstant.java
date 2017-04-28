@@ -8,5 +8,9 @@ public class TrueConstant extends LogicConstant {
     public TrueConstant() {
         super(false);
     }
-    
+
+    @Override
+    public String toString() {
+        return "TRUE";
+    }
 }

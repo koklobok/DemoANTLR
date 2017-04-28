@@ -17,4 +17,9 @@ public class OrExpression extends BinaryOperation {
                 || getRight().evaluate(parameters);
 
     }
+
+    @Override
+    public String toString() {
+        return "( " + getLeft().toString() + " | " + getRight().toString() + " ) ";
+    }
 }
