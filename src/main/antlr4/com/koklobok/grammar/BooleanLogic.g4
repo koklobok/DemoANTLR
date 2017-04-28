@@ -25,8 +25,8 @@ constant: TRUE      #true
     | FALSE         #false
 ;
 
-TRUE: 'true';
-FALSE: 'false';
+TRUE: 'true' | 'TRUE';
+FALSE: 'false' | 'FALSE';
 AND: 'AND' | '&';
 OR:  'OR' | '|';
 VAR: [A-Z];

@@ -9,11 +9,17 @@ import com.koklobok.model.NegateOperation;
 import com.koklobok.model.OrExpression;
 import com.koklobok.model.TrueConstant;
 import com.koklobok.model.Variable;
+import org.antlr.v4.runtime.tree.RuleNode;
 
 /**
  * @author Roman.Holiuk
  */
 public class LogicalExprVisitor extends BooleanLogicBaseVisitor<Expression> {
+
+    @Override
+    protected boolean shouldVisitNextChild(RuleNode node, Expression currentResult) {
+        return currentResult == null;
+    }
 
     @Override
     public Expression visitExpr_OR(BooleanLogicParser.Expr_ORContext ctx) {
@@ -35,6 +41,11 @@ public class LogicalExprVisitor extends BooleanLogicBaseVisitor<Expression> {
     public Expression visitNot_var(BooleanLogicParser.Not_varContext ctx) {
         Expression variable = visitVar(ctx.var());
         return new NegateOperation(variable);
+    }
+
+    @Override
+    public Expression visitGroup(BooleanLogicParser.GroupContext ctx) {
+        return super.visitGroup(ctx);
     }
 
     @Override
