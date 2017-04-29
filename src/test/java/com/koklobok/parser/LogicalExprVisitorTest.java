@@ -2,23 +2,16 @@ package com.koklobok.parser;
 
 import com.koklobok.grammar.BooleanLogicLexer;
 import com.koklobok.grammar.BooleanLogicParser;
-import com.koklobok.model.AndExpression;
-import com.koklobok.model.BooleanStatement;
-import com.koklobok.model.Expression;
-import com.koklobok.model.FalseConstant;
-import com.koklobok.model.NegateOperation;
-import com.koklobok.model.OrExpression;
-import com.koklobok.model.TrueConstant;
-import com.koklobok.model.Variable;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
+import com.koklobok.model.*;
+import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author Roman.Holiuk
@@ -207,8 +200,8 @@ public class LogicalExprVisitorTest {
     }
 
     private Expression executeParserWithVisitor(String text) {
-        CharStream charStream = CharStreams.fromString(text);
-        BooleanLogicLexer lexer = new BooleanLogicLexer(charStream);
+        ANTLRInputStream stream = new ANTLRInputStream(text);
+        BooleanLogicLexer lexer = new BooleanLogicLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         BooleanLogicParser parser = new BooleanLogicParser(tokens);
 
