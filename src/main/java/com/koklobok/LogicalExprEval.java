@@ -13,7 +13,7 @@ public class LogicalExprEval extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Editor.fxml"));
 
         Scene scene = new Scene(root, 600, 420);
-        primaryStage.setTitle("FXML Welcome");
+        primaryStage.setTitle("Boolean Logic Expression Checker");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
