@@ -9,6 +9,7 @@ import com.koklobok.model.NegateOperation;
 import com.koklobok.model.OrExpression;
 import com.koklobok.model.TrueConstant;
 import com.koklobok.model.Variable;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 
 /**
@@ -73,5 +74,12 @@ public class LogicalExprVisitor extends BooleanLogicBaseVisitor<Expression> {
     @Override
     public Expression visitFalse(BooleanLogicParser.FalseContext ctx) {
         return new FalseConstant();
+    }
+
+    @Override
+    public Expression visit(ParseTree tree) {
+        if (tree == null) return null;
+
+        return super.visit(tree);
     }
 }

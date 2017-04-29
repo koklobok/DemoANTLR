@@ -12,10 +12,10 @@ public class LogicalExprEval extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Editor.fxml"));
 
-        Scene scene = new Scene(root, 600, 400);
-
+        Scene scene = new Scene(root, 600, 420);
         primaryStage.setTitle("FXML Welcome");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }

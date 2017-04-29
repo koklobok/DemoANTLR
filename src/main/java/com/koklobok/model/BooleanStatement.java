@@ -53,6 +53,10 @@ public class BooleanStatement {
         return result;
     }
 
+    public boolean isValid() {
+        return leftExpression != null && rightExpression != null;
+    }
+
     private static class ParametersIterator implements Iterator<Map<Variable, Boolean>> {
 
         private final List<Variable> variables;
@@ -64,7 +68,7 @@ public class BooleanStatement {
 
         @Override
         public boolean hasNext() {
-            return currentIndex < variables.size() - 1;
+            return currentIndex < (int)Math.pow(2, variables.size()) - 1;
         }
 
         @Override

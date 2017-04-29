@@ -32,9 +32,9 @@ public class Variable implements Expression {
     
     @Override
     public boolean evaluate(Map<Variable, Boolean> parameters) {
-        boolean result = parameters.get(this);
-        
-        return false;
+        Boolean result = parameters.get(this);
+        if (result == null) throw new VariableValueNotDefined(this.getName());
+        return result;
     }
 
 
