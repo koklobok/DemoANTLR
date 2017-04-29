@@ -12,11 +12,15 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Roman.Holiuk
  */
 public class MainStage {
     private final static String LINE_DELIMITER = "\n";
+    private static final int MAX_LINES = 20;
 
     public TextArea textExpressions;
     public Pane paneCircles;
@@ -28,7 +32,8 @@ public class MainStage {
             String[] lines = newValue.split(LINE_DELIMITER);
             BooleanStatementParser parser = new BooleanStatementParser();
             paneCircles.getChildren().clear();
-            for (int i = 0; i < lines.length; i++) {
+            int length = Math.min(lines.length, MAX_LINES);
+            for (int i = 0; i < length; i++) {
                 BooleanStatement statement = parser.parse(lines[i]);
                 if (statement.isValid()) {
                     int lineNumber = i + 1;
@@ -36,6 +41,7 @@ public class MainStage {
                     paneCircles.getChildren().add(circle);
                 }
             }
+
         });
     }
 
@@ -44,15 +50,27 @@ public class MainStage {
         final IntegerProperty lines = new SimpleIntegerProperty(1);
 
         return new TextFormatter<>(change -> {
+            int linesChange = countLinesString(change.getText());
             if (change.isAdded()) {
-                if (change.getText().indexOf('\n') > -1) {
-                    lines.set(lines.get() + 1);
-                }
-            } else if (change.isDeleted())
-            if (lines.get() > 20) {
+                lines.set(lines.get() + linesChange);
+            } else if (change.isDeleted()) {
+                lines.set(lines.get() - linesChange);
+            }
+
+            if (lines.get() > MAX_LINES) {
                 change.setText("");
+                lines.set(MAX_LINES);
             }
             return change;
         });
+    }
+
+    private static int countLinesString(String text) {
+        Matcher m = Pattern.compile("\r?\n").matcher(text);
+        int lines = 0;
+        while (m.find()) {
+            lines++;
+        }
+        return lines;
     }
 }
