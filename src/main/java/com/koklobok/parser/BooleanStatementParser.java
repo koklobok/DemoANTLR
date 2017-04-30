@@ -6,9 +6,6 @@ import com.koklobok.model.BooleanStatement;
 import com.koklobok.model.Expression;
 import org.antlr.v4.runtime.*;
 
-import java.util.Collections;
-import java.util.List;
-
 /**
  * @author Roman.Holiuk
  */
@@ -21,8 +18,10 @@ public class BooleanStatementParser {
         BooleanLogicParser parser = new BooleanLogicParser(tokens);
         BooleanLogicParser.StatContext tree;
         parser.getErrorListeners().clear();
+        lexer.getErrorListeners().clear();
         RecordParseErrorListener errorListener = new RecordParseErrorListener();
         parser.addErrorListener(errorListener);
+        lexer.addErrorListener(errorListener);
         Expression left = null;
         Expression right = null;
         tree = parser.stat();
