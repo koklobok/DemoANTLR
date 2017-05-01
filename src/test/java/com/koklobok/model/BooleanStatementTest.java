@@ -62,6 +62,17 @@ public class BooleanStatementTest {
         verifyExpressionResult(left, right, true);
     }
 
+    @Test
+    public void evaluateVar_And_False() throws Exception {
+        Expression left = new Variable("A");
+        Expression right = new AndExpression(
+                new Variable("A"),
+                new FalseConstant()
+        );
+
+        verifyExpressionResult(left, right, false);
+    }
+
 
     private void verifyExpressionResult(Expression leftExpression, Expression rightExpression, boolean expectedResult) {
         BooleanStatement statement = new BooleanStatement(leftExpression, rightExpression);

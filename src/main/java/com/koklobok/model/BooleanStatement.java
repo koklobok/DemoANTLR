@@ -68,7 +68,7 @@ public class BooleanStatement {
 
         @Override
         public boolean hasNext() {
-            return currentIndex < (int)Math.pow(2, variables.size()) - 1;
+            return currentIndex < (int)Math.pow(2, variables.size());
         }
 
         @Override
