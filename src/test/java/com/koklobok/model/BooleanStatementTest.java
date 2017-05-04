@@ -53,9 +53,9 @@ public class BooleanStatementTest {
                 new OrOperation(new Variable("A"), new Variable("B")),
                 new Variable("C")
         );
-        Expression right = new AndOperation(
-                new OrOperation(new Variable("A"), new Variable("C")),
-                new OrOperation(new Variable("B"), new Variable("C"))
+        Expression right = new OrOperation(
+                new AndOperation(new Variable("A"), new Variable("C")),
+                new AndOperation(new Variable("B"), new Variable("C"))
         );
 
         verifyExpressionResult(left, right, true);
