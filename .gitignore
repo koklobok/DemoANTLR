@@ -50,3 +50,4 @@ fabric.properties
 
 /target
 /gen
+dependency-reduced-pom.xml
