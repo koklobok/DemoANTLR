@@ -2,11 +2,11 @@ package com.koklobok.parser;
 
 import com.koklobok.grammar.BooleanLogicBaseVisitor;
 import com.koklobok.grammar.BooleanLogicParser;
-import com.koklobok.model.AndExpression;
+import com.koklobok.model.AndOperation;
 import com.koklobok.model.Expression;
 import com.koklobok.model.FalseConstant;
 import com.koklobok.model.NegateOperation;
-import com.koklobok.model.OrExpression;
+import com.koklobok.model.OrOperation;
 import com.koklobok.model.TrueConstant;
 import com.koklobok.model.Variable;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -27,7 +27,7 @@ public class LogicalExprVisitor extends BooleanLogicBaseVisitor<Expression> {
         Expression left = visit(ctx.expr(0));
         Expression right = visit(ctx.expr(1));
         
-        return new OrExpression(left, right);
+        return new OrOperation(left, right);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LogicalExprVisitor extends BooleanLogicBaseVisitor<Expression> {
         Expression left = visit(ctx.expr(0));
         Expression right = visit(ctx.expr(1));
 
-        return new AndExpression(left, right);
+        return new AndOperation(left, right);
     }
     
     @Override

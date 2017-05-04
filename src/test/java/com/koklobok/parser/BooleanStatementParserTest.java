@@ -1,10 +1,10 @@
 package com.koklobok.parser;
 
-import com.koklobok.model.AndExpression;
+import com.koklobok.model.AndOperation;
 import com.koklobok.model.BooleanStatement;
 import com.koklobok.model.Expression;
 import com.koklobok.model.FalseConstant;
-import com.koklobok.model.OrExpression;
+import com.koklobok.model.OrOperation;
 import com.koklobok.model.TrueConstant;
 import com.koklobok.model.Variable;
 import org.junit.Before;
@@ -78,8 +78,8 @@ public class BooleanStatementParserTest {
         assertThat("Left part should have one variable", leftExpression.getVariables(), hasSize(1));
         assertThat("Right part should have two variables", rightExpression.getVariables(), hasSize(2));
 
-        assertThat("Left expression should be AND operation", leftExpression, instanceOf(AndExpression.class));
-        assertThat("Right expression should be OR operation", rightExpression, instanceOf(OrExpression.class));
+        assertThat("Left expression should be AND operation", leftExpression, instanceOf(AndOperation.class));
+        assertThat("Right expression should be OR operation", rightExpression, instanceOf(OrOperation.class));
         
     }
 

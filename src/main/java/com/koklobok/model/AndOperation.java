@@ -5,9 +5,9 @@ import java.util.Map;
 /**
  * @author Roman.Holiuk
  */
-public class AndExpression extends BinaryOperation {
+public class AndOperation extends BinaryOperation {
 
-    public AndExpression(Expression left, Expression right) {
+    public AndOperation(Expression left, Expression right) {
         super(left, right);
     }
 

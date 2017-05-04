@@ -5,9 +5,9 @@ import java.util.Map;
 /**
  * @author Roman.Holiuk
  */
-public class OrExpression extends BinaryOperation {
+public class OrOperation extends BinaryOperation {
 
-    public OrExpression(Expression left, Expression right) {
+    public OrOperation(Expression left, Expression right) {
         super(left, right);
     }
 

@@ -1,6 +1,5 @@
 package com.koklobok.model;
 
-import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.DiagnosingMatcher;
 import org.hamcrest.Matcher;
@@ -50,13 +49,13 @@ public class BooleanStatementTest {
 
     @Test
     public void evaluateAnd_Or() throws Exception {
-        Expression left = new AndExpression(
-                new OrExpression(new Variable("A"), new Variable("B")),
+        Expression left = new AndOperation(
+                new OrOperation(new Variable("A"), new Variable("B")),
                 new Variable("C")
         );
-        Expression right = new AndExpression(
-                new OrExpression(new Variable("A"), new Variable("C")),
-                new OrExpression(new Variable("B"), new Variable("C"))
+        Expression right = new AndOperation(
+                new OrOperation(new Variable("A"), new Variable("C")),
+                new OrOperation(new Variable("B"), new Variable("C"))
         );
 
         verifyExpressionResult(left, right, true);
@@ -65,7 +64,7 @@ public class BooleanStatementTest {
     @Test
     public void evaluateVar_And_False() throws Exception {
         Expression left = new Variable("A");
-        Expression right = new AndExpression(
+        Expression right = new AndOperation(
                 new Variable("A"),
                 new FalseConstant()
         );
