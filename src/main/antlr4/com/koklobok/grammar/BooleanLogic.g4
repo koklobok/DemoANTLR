@@ -2,6 +2,8 @@ grammar BooleanLogic;
 
 stat: expr '=' expr EOF;
 
+expr_list: expr (NL expr)*;
+
 expr: expr AND expr         #expr_AND      
     | expr OR expr          #expr_OR
     | negate                #expr_NOT
